@@ -10,7 +10,7 @@ The solutions architeture is as follows,
 $ docker-compose up -d
 
 This will start DSS / MB / DSS and deploy the samples
-You can publish a payload from MB to *books* queue or 
+You can publish a payload from MB to _books_ queue or 
 post a payload via http endpoint
 
 
