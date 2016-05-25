@@ -2,7 +2,7 @@
 
 The solutions architeture is as follows,
 
-()
+[sa]: https://github.com/nuwanbando/esb-multi-proto-demo/blob/master/sa/sa05252016.png
 
 ```
 // navigate to containers and execute
