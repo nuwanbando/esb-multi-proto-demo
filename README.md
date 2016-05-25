@@ -5,14 +5,14 @@ The solutions architeture is as follows,
 ![alt text](https://github.com/nuwanbando/esb-multi-proto-demo/blob/master/sa/sa05252016.png "Solution Architecture")
 
 ```
-// navigate to containers and execute
+//navigate to containers/ dir and execute
 
 $ docker-compose up -d
 
-/* This will start DSS / MS / DSS and deploy the samples
- * You can publish a payload from MB to *books* queue or 
- * post a payload via http endpoint
- */
+This will start DSS / MB / DSS and deploy the samples
+You can publish a payload from MB to *books* queue or 
+post a payload via http endpoint
+
 
 ```
 
