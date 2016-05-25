@@ -1,0 +1,8 @@
+*.zip
+*.jar
+*.metadata
+*.classpath
+*.project
+*.settings
+**/RemoteSystemsTempFiles/
+**/target/

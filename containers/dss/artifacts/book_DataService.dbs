@@ -1,0 +1,96 @@
+<data name="book_DataService" serviceNamespace="http://ws.wso2.org/dataservice">
+   <config enableOData="false" id="default">
+      <property name="org.wso2.ws.dataservice.driver">com.mysql.jdbc.Driver</property>
+      <property name="org.wso2.ws.dataservice.protocol">jdbc:mysql://dbms:3306/library</property>
+      <property name="org.wso2.ws.dataservice.user">root</property>
+      <property name="org.wso2.ws.dataservice.password">root</property>
+      <property name="org.wso2.ws.dataservice.minpoolsize">1</property>
+      <property name="org.wso2.ws.dataservice.maxpoolsize">10</property>
+      <property name="org.wso2.ws.dataservice.autocommit">false</property>
+      <property name="org.wso2.ws.dataservice.validation_query">SELECT 1</property>
+   </config>
+   <query id="update_book_query" useConfig="default">
+      <sql>UPDATE book SET author=?,title=?,genre=?,price=?,publish_date=?,description=? WHERE id=?</sql>
+      <param name="author" ordinal="1" sqlType="STRING"/>
+      <param name="title" ordinal="2" sqlType="STRING"/>
+      <param name="genre" ordinal="3" sqlType="STRING"/>
+      <param name="price" ordinal="4" sqlType="DOUBLE"/>
+      <param name="publish_date" ordinal="5" sqlType="TIMESTAMP"/>
+      <param name="description" ordinal="6" sqlType="STRING"/>
+      <param name="id" ordinal="7" sqlType="STRING"/>
+   </query>
+   <query id="select_with_key_book_query" useConfig="default">
+      <sql>SELECT id, author, title, genre, price, publish_date, description FROM book WHERE id=?</sql>
+      <result element="bookCollection" rowName="book">
+         <element column="id" name="id" xsdType="xs:string"/>
+         <element column="author" name="author" xsdType="xs:string"/>
+         <element column="title" name="title" xsdType="xs:string"/>
+         <element column="genre" name="genre" xsdType="xs:string"/>
+         <element column="price" name="price" xsdType="xs:decimal"/>
+         <element column="publish_date" name="publish_date" xsdType="xs:dateTime"/>
+         <element column="description" name="description" xsdType="xs:string"/>
+      </result>
+      <param name="id" ordinal="1" sqlType="STRING"/>
+   </query>
+   <query id="select_all_book_query" useConfig="default">
+      <sql>SELECT id, author, title, genre, price, publish_date, description FROM book</sql>
+      <result element="bookCollection" rowName="book">
+         <element column="id" name="id" xsdType="xs:string"/>
+         <element column="author" name="author" xsdType="xs:string"/>
+         <element column="title" name="title" xsdType="xs:string"/>
+         <element column="genre" name="genre" xsdType="xs:string"/>
+         <element column="price" name="price" xsdType="xs:decimal"/>
+         <element column="publish_date" name="publish_date" xsdType="xs:dateTime"/>
+         <element column="description" name="description" xsdType="xs:string"/>
+      </result>
+   </query>
+   <query id="delete_book_query" useConfig="default">
+      <sql>DELETE FROM book WHERE id=?</sql>
+      <param name="id" ordinal="1" sqlType="STRING"/>
+   </query>
+   <query id="insert_book_query" useConfig="default">
+      <sql>INSERT INTO book(id,author,title,genre,price,publish_date,description) VALUES(?,?,?,?,?,?,?)</sql>
+      <param name="id" ordinal="1" sqlType="STRING"/>
+      <param name="author" ordinal="2" sqlType="STRING"/>
+      <param name="title" ordinal="3" sqlType="STRING"/>
+      <param name="genre" ordinal="4" sqlType="STRING"/>
+      <param name="price" ordinal="5" sqlType="DOUBLE"/>
+      <param name="publish_date" ordinal="6" sqlType="DATE"/>
+      <param name="description" ordinal="7" sqlType="STRING"/>
+   </query>
+   <operation name="select_with_key_book_operation">
+      <call-query href="select_with_key_book_query">
+         <with-param name="id" query-param="id"/>
+      </call-query>
+   </operation>
+   <operation name="update_book_operation">
+      <call-query href="update_book_query">
+         <with-param name="author" query-param="author"/>
+         <with-param name="price" query-param="price"/>
+         <with-param name="genre" query-param="genre"/>
+         <with-param name="description" query-param="description"/>
+         <with-param name="id" query-param="id"/>
+         <with-param name="title" query-param="title"/>
+         <with-param name="publish_date" query-param="publish_date"/>
+      </call-query>
+   </operation>
+   <operation name="select_all_book_operation">
+      <call-query href="select_all_book_query"/>
+   </operation>
+   <operation name="insert_book_operation">
+      <call-query href="insert_book_query">
+         <with-param name="author" query-param="author"/>
+         <with-param name="price" query-param="price"/>
+         <with-param name="genre" query-param="genre"/>
+         <with-param name="description" query-param="description"/>
+         <with-param name="id" query-param="id"/>
+         <with-param name="title" query-param="title"/>
+         <with-param name="publish_date" query-param="publish_date"/>
+      </call-query>
+   </operation>
+   <operation name="delete_book_operation">
+      <call-query href="delete_book_query">
+         <with-param name="id" query-param="id"/>
+      </call-query>
+   </operation>
+</data>

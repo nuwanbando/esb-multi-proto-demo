@@ -1,0 +1,41 @@
+version: '2'
+services:
+  dbms:
+    container_name: database
+    build: 
+        context: .
+        dockerfile: database/Dockerfile
+    ports:
+     - "3306:3306"
+    environment:
+        MYSQL_ROOT_PASSWORD: root
+  dss:
+    container_name: dss
+    depends_on: 
+      - dbms
+    build:
+      context: .
+      dockerfile: dss/Dockerfile
+    ports:
+      - "9773:9763"
+      - "9453:9443"
+  esb:
+    container_name: esb
+    depends_on: 
+      - mb
+    build:
+      context: .
+      dockerfile: esb/Dockerfile
+    ports:
+      - "9763:9763"
+      - "9443:9443"
+      - "8280:8280"
+      - "8243:8243"
+  mb:
+    container_name: mb
+    build:
+      context: .
+      dockerfile: mb/Dockerfile
+    ports:
+      - "9783:9763"
+      - "9463:9443"
