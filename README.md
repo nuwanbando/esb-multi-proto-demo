@@ -5,7 +5,9 @@ The solutions architeture is as follows,
 ![alt text](https://github.com/nuwanbando/esb-multi-proto-demo/blob/master/sa/sa05252016.png "Solution Architecture")
 
 ```
-//navigate to containers/ dir and execute
+//Copy MB-HOME/client-libs/* to a new folder in containers/esb/artifacts/mb-libs 
+//Copy mysql-connector* to containers/dss/artifacts
+//Navigate to containers/ dir and execute
 
 $ docker-compose up -d
 
